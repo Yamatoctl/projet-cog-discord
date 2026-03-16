@@ -1,4 +1,4 @@
-PYTHON_COMMANDS = [
+PYTHON_DICT = [
     {
         "name": "print()",
         "description": "Affiche un message dans la console.",

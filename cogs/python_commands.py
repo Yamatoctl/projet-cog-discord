@@ -1,19 +1,19 @@
-import discord # pont entre code python et API discord
+import discord 
 from discord.ext import commands # ext. pour extension, importe seulement le sous module commands 
-from data.python_commands import PYTHON_COMMANDS # veut dire, va dans dossier data, ouvre python_commands.py et importe seulement la var. PYTHON_COMMAND
+from data.python_dict import PYTHON_DICT # veut dire, va dans dossier data, ouvre python_dict.py et importe seulement la var. PYTHON_DICT
 
 # Menu déroulant : liste toutes les fonctions 
 class PythonSelect(discord.ui.Select): # une methode est une fonction qui appartient à une classe
     def __init__(self): # methode de construction du menu déroulant avant que l'user clique
         options = [
             discord.SelectOption(label=cmd["name"], value=str(i)) # objet représentant une ligne dans le menu déroulant
-            for i, cmd in enumerate(PYTHON_COMMANDS)
+            for i, cmd in enumerate(PYTHON_DICT)
         ]
         super().__init__(placeholder="Choisir une fonction...", options=options) # construit le menu déroulant visible à l'écran
 
     async def callback(self, interaction: discord.Interaction): # 2eme methode, s'exécute après que l'utilisateur a fait son choix. c'est la réaction au clic
         try:
-            cmd = PYTHON_COMMANDS[int(self.values[0])]
+            cmd = PYTHON_DICT[int(self.values[0])]
 
             embed = discord.Embed(title=f"`{cmd['name']}`", description=cmd["description"], color=0x3498db)
             embed.add_field(name="Description", value=cmd["details"], inline=False)
