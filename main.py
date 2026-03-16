@@ -10,16 +10,16 @@ intents = discord.Intents.default()
 intents.members = True
 intents.message_content = True
 
-bot = commands.Bot(command_prefix='$', intents=intents)
+bot = commands.Bot(command_prefix='', intents=intents)
 
 @bot.event
 async def on_ready():
-    print(f'✅ Bot connecté : {bot.user}')
+    print(f'Bot connecté : {bot.user}')
 
 async def main():
     async with bot:
         # await bot.load_extension('cogs.llm')  # charge le cog LLM
-        await bot.load_extension('cogs.linux')
+        await bot.load_extension('cogs.python')
         await bot.start(os.getenv('TOKEN'))
 
-asyncio.run(main())
+asyncio.run(main()) # 
