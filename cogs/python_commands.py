@@ -1,17 +1,17 @@
 import discord 
-from discord.ext import commands # ext. pour extension, importe seulement le sous module commands 
-from data.python_dict import PYTHON_DICT # veut dire, va dans dossier data, ouvre python_dict.py et importe seulement la var. PYTHON_DICT
+from discord.ext import commands #  
+from data.python_dict import PYTHON_DICT 
 
 # Menu déroulant : liste toutes les fonctions 
-class PythonSelect(discord.ui.Select): # une methode est une fonction qui appartient à une classe
-    def __init__(self): # methode de construction du menu déroulant avant que l'user clique
+class PythonSelect(discord.ui.Select): 
+    def __init__(self): 
         options = [
-            discord.SelectOption(label=cmd["name"], value=str(i)) # objet représentant une ligne dans le menu déroulant
+            discord.SelectOption(label=cmd["name"], value=str(i)) 
             for i, cmd in enumerate(PYTHON_DICT)
         ]
-        super().__init__(placeholder="Choisir une fonction...", options=options) # construit le menu déroulant visible à l'écran
+        super().__init__(placeholder="Choisir une fonction...", options=options) 
 
-    async def callback(self, interaction: discord.Interaction): # 2eme methode, s'exécute après que l'utilisateur a fait son choix. c'est la réaction au clic
+    async def callback(self, interaction: discord.Interaction): 
         try:
             cmd = PYTHON_DICT[int(self.values[0])]
 
